@@ -337,3 +337,16 @@ No Render, os arquivos locais podem ser perdidos após reinicializações ou nov
 O objetivo é aplicar os conhecimentos de Java, orientação a objetos, Spring Boot, APIs REST, persistência de dados, regras de negócio, testes automatizados, segurança e publicação de aplicações web.
 
 **💜 #Elas Tech — Sistema de Empréstimo de Equipamentos.**
+
+## 🎬 Vídeo de apresentação
+
+Confira a apresentação do **Sistema de Empréstimo de Equipamentos — #Elas Tech**, demonstrando:
+
+- ☕ Estrutura e organização do projeto Java no IntelliJ.
+- 🔐 Autenticação JWT e testes da API pelo Swagger.
+- 🗄️ Consultas ao banco de dados H2.
+- 🎨 Interface web e funcionalidades do dashboard.
+
+### ▶️ Assista à apresentação
+
+📹 **[Clique aqui para assistir ao vídeo do projeto](https://drive.google.com/file/d/1WEf5aht3Fyx8etMfHUt9E7cIln8IJQZO/view?usp=sharing)**
