@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#Elas Tech | Gestão de Equipamentos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOGIN -->
+<main class="login-container" id="telaLogin">
+    <div class="login-card">
+        <h1>Gestão de Equipamentos</h1>
+        <p>Faça login para acessar o sistema</p>
+        <form id="loginForm">
+            <label for="usuario">Usuário</label>
+            <input id="usuario" type="text"
+                   placeholder="Digite seu usuário" required>
+            <label for="senha">Senha</label>
+            <input id="senha" type="password"
+                   placeholder="Digite sua senha" required>
+            <button type="submit">Entrar</button>
+        </form>
+        <p id="mensagem"></p>
+    </div>
+</main>
+
+<!-- SISTEMA -->
+<section id="dashboard" class="dashboard" hidden>
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="brand">
+                <span class="brand-hashtag">#</span>Elas Tech
+            </div>
+            <p>Gestão de Equipamentos</p>
+        </div>
+
+        <nav class="sidebar-menu">
+            <button class="menu-item ativo" data-modulo="Dashboard">
+                <span>⌂</span> Dashboard
+            </button>
+            <button class="menu-item" data-modulo="Equipamentos">
+                <span>▣</span> Equipamentos
+            </button>
+            <button class="menu-item" data-modulo="Colaboradores">
+                <span>♙</span> Colaboradores
+            </button>
+            <button class="menu-item" data-modulo="Empréstimos">
+                <span>⇄</span> Empréstimos
+            </button>
+            <button class="menu-item" data-modulo="Histórico">
+                <span>◷</span> Histórico
+            </button>
+        </nav>
+
+        <button id="btnSair" class="btn-sair">↪ Sair</button>
+    </aside>
+
+    <main class="dashboard-main">
+        <header class="dashboard-header">
+            <div>
+                <h1 id="tituloPagina">Painel de Controle</h1>
+                <p>
+                    Bem-vinda ao sistema de empréstimo de
+                    equipamentos #Elas Tech! ✨
+                </p>
+            </div>
+            <button id="btnTema" class="btn-tema">
+                ☾ Tema escuro
+            </button>
+        </header>
+
+        <!-- DASHBOARD -->
+        <div id="conteudoDashboard">
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon roxo">▣</div>
+                    <div>
+                        <strong id="totalEquipamentos">--</strong>
+                        <p>Equipamentos</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon turquesa">✓</div>
+                    <div>
+                        <strong id="totalDisponiveis">--</strong>
+                        <p>Disponíveis</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon roxo">⇄</div>
+                    <div>
+                        <strong id="totalEmprestados">--</strong>
+                        <p>Emprestados</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon amarelo">◷</div>
+                    <div>
+                        <strong id="totalAtrasados">--</strong>
+                        <p>Atrasados</p>
+                    </div>
+                </div>
+            </div>
+
+            <section class="acoes-rapidas">
+                <div class="acoes-texto">
+                    <h2>⚡ Ações rápidas</h2>
+                    <p>Acesse as principais funcionalidades do sistema.</p>
+                </div>
+                <div class="acoes-botoes">
+                    <button class="btn-primario"
+                            data-modulo="Empréstimos"
+                            data-abrir-formulario="emprestimo">
+                        + Novo empréstimo
+                    </button>
+                    <button class="btn-secundario"
+                            data-modulo="Equipamentos"
+                            data-abrir-formulario="equipamento">
+                        + Novo equipamento
+                    </button>
+                </div>
+            </section>
+        </div>
+
+        <!-- EQUIPAMENTOS -->
+        <section id="telaEquipamentos" class="modulo-area" hidden>
+            <div class="modulo-cabecalho">
+                <div>
+                    <h2>Gerenciar equipamentos</h2>
+                    <p>Cadastre e acompanhe os equipamentos da empresa.</p>
+                </div>
+                <button id="btnNovoEquipamento" class="btn-primario">
+                    + Novo equipamento
+                </button>
+            </div>
+
+            <section id="painelFormulario"
+                     class="painel-formulario" hidden>
+                <h3 id="tituloFormulario">Cadastrar equipamento</h3>
+                <form id="formEquipamento">
+                    <div class="form-grid">
+                        <div class="campo">
+                            <label for="equipPatrimonio">Patrimônio</label>
+                            <input id="equipPatrimonio" type="text"
+                                   placeholder="Ex.: PAT-001" required>
+                        </div>
+                        <div class="campo">
+                            <label for="equipNome">Nome do equipamento</label>
+                            <input id="equipNome" type="text"
+                                   placeholder="Ex.: Notebook Dell" required>
+                        </div>
+                        <div class="campo">
+                            <label for="equipTipo">Tipo</label>
+                            <select id="equipTipo" required>
+                                <option value="">Selecione</option>
+                                <option value="NOTEBOOK">Notebook</option>
+                                <option value="MONITOR">Monitor</option>
+                                <option value="MOUSE">Mouse</option>
+                                <option value="TECLADO">Teclado</option>
+                                <option value="HEADSET">Headset</option>
+                                <option value="OUTRO">Outro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-acoes">
+                        <button id="btnSalvarEquipamento"
+                                type="submit" class="btn-primario">
+                            Salvar equipamento
+                        </button>
+                        <button id="btnCancelarEquipamento"
+                                type="button" class="btn-secundario">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="painel-listagem">
+                <div class="listagem-topo">
+                    <h3>Equipamentos cadastrados</h3>
+                    <button id="btnAtualizarEquipamentos"
+                            class="btn-secundario">
+                        ↻ Atualizar
+                    </button>
+                </div>
+                <div class="filtros-equipamentos">
+                    <input id="buscaEquipamento" type="search"
+                           placeholder="Buscar por nome ou patrimônio">
+                    <select id="filtroDisponibilidade">
+                        <option value="todos">Todas as situações</option>
+                        <option value="disponivel">Disponíveis</option>
+                        <option value="emprestado">Emprestados</option>
+                    </select>
+                </div>
+                <p id="mensagemEquipamentos"
+                   class="mensagem-modulo"
+                   role="status" aria-live="polite"></p>
+                <div class="tabela-container">
+                    <table class="tabela-equipamentos">
+                        <thead>
+                        <tr>
+                            <th>Patrimônio</th>
+                            <th>Equipamento</th>
+                            <th>Tipo</th>
+                            <th>Situação</th>
+                            <th>Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody id="corpoTabelaEquipamentos"></tbody>
+                    </table>
+                </div>
+                <p id="listaVazia" class="lista-vazia" hidden>
+                    Nenhum equipamento encontrado.
+                </p>
+            </section>
+        </section>
+
+        <!-- COLABORADORES -->
+        <section id="telaColaboradores" class="modulo-area" hidden>
+            <div class="modulo-cabecalho">
+                <div>
+                    <h2>Gerenciar colaboradores</h2>
+                    <p>Cadastre colaboradores e consulte seus empréstimos.</p>
+                </div>
+                <button id="btnNovoColaborador" class="btn-primario">
+                    + Novo colaborador
+                </button>
+            </div>
+
+            <section id="painelFormularioColaborador"
+                     class="painel-formulario" hidden>
+                <h3>Cadastrar colaborador</h3>
+                <form id="formColaborador">
+                    <div class="form-grid">
+                        <div class="campo">
+                            <label for="colabNome">Nome completo</label>
+                            <input id="colabNome" type="text"
+                                   maxlength="150"
+                                   placeholder="Ex.: Ana Silva" required>
+                        </div>
+                        <div class="campo">
+                            <label for="colabEmail">E-mail</label>
+                            <input id="colabEmail" type="email"
+                                   maxlength="200"
+                                   placeholder="ana@empresa.com" required>
+                        </div>
+                        <div class="campo">
+                            <label for="colabCargo">Cargo</label>
+                            <input id="colabCargo" type="text"
+                                   maxlength="100"
+                                   placeholder="Ex.: Analista">
+                        </div>
+                    </div>
+                    <div class="form-acoes">
+                        <button id="btnSalvarColaborador"
+                                type="submit" class="btn-primario">
+                            Salvar colaborador
+                        </button>
+                        <button id="btnCancelarColaborador"
+                                type="button" class="btn-secundario">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="painel-listagem">
+                <div class="listagem-topo">
+                    <h3>Colaboradores cadastrados</h3>
+                    <button id="btnAtualizarColaboradores"
+                            class="btn-secundario">
+                        ↻ Atualizar
+                    </button>
+                </div>
+                <div class="filtros-equipamentos">
+                    <input id="buscaColaborador" type="search"
+                           placeholder="Buscar por nome, e-mail ou cargo">
+                </div>
+                <p id="mensagemColaboradores"
+                   class="mensagem-modulo"
+                   role="status" aria-live="polite"></p>
+                <div class="tabela-container">
+                    <table class="tabela-equipamentos">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Cargo</th>
+                            <th>Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody id="corpoTabelaColaboradores"></tbody>
+                    </table>
+                </div>
+                <p id="listaColaboradoresVazia"
+                   class="lista-vazia" hidden>
+                    Nenhum colaborador encontrado.
+                </p>
+            </section>
+
+            <section id="painelHistoricoColaborador"
+                     class="painel-listagem" hidden>
+                <div class="listagem-topo">
+                    <div>
+                        <h3>Histórico de empréstimos</h3>
+                        <p id="nomeHistoricoColaborador"
+                           class="texto-secundario"></p>
+                    </div>
+                    <button id="btnFecharHistorico"
+                            class="btn-secundario">Fechar</button>
+                </div>
+                <p id="mensagemHistoricoColaborador"
+                   class="mensagem-modulo"
+                   role="status" aria-live="polite"></p>
+                <div class="tabela-container">
+                    <table class="tabela-equipamentos">
+                        <thead>
+                        <tr>
+                            <th>Empréstimo</th>
+                            <th>Equipamento</th>
+                            <th>Data de saída</th>
+                            <th>Previsão</th>
+                            <th>Devolução</th>
+                            <th>Situação</th>
+                        </tr>
+                        </thead>
+                        <tbody id="corpoHistoricoColaborador"></tbody>
+                    </table>
+                </div>
+                <p id="historicoColaboradorVazio"
+                   class="lista-vazia" hidden>
+                    Este colaborador ainda não possui empréstimos.
+                </p>
+            </section>
+        </section>
+
+        <!-- EMPRÉSTIMOS -->
+        <section id="telaEmprestimos" class="modulo-area" hidden>
+            <div class="modulo-cabecalho">
+                <div>
+                    <h2>Gerenciar empréstimos</h2>
+                    <p>Registre retiradas, acompanhe prazos e realize devoluções.</p>
+                </div>
+                <button id="btnNovoEmprestimo" class="btn-primario">
+                    + Novo empréstimo
+                </button>
+            </div>
+
+            <section id="painelFormularioEmprestimo"
+                     class="painel-formulario" hidden>
+                <h3>Registrar empréstimo</h3>
+                <form id="formEmprestimo">
+                    <div class="form-grid">
+                        <div class="campo">
+                            <label for="emprestimoEquipamento">
+                                Equipamento disponível
+                            </label>
+                            <select id="emprestimoEquipamento" required>
+                                <option value="">Selecione um equipamento</option>
+                            </select>
+                        </div>
+                        <div class="campo">
+                            <label for="emprestimoColaborador">
+                                Colaborador
+                            </label>
+                            <select id="emprestimoColaborador" required>
+                                <option value="">Selecione um colaborador</option>
+                            </select>
+                        </div>
+                    </div>
+                    <p class="texto-secundario" style="margin-top:18px">
+                        O prazo de devolução é calculado automaticamente:
+                        14 dias.
+                    </p>
+                    <div class="form-acoes">
+                        <button id="btnSalvarEmprestimo"
+                                type="submit" class="btn-primario">
+                            Confirmar empréstimo
+                        </button>
+                        <button id="btnCancelarEmprestimo"
+                                type="button" class="btn-secundario">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="painel-listagem">
+                <div class="listagem-topo">
+                    <h3>Empréstimos registrados</h3>
+                    <button id="btnAtualizarEmprestimos"
+                            class="btn-secundario">
+                        ↻ Atualizar
+                    </button>
+                </div>
+                <div class="filtros-equipamentos">
+                    <input id="buscaEmprestimo" type="search"
+                           placeholder="Buscar por equipamento ou colaborador">
+                    <select id="filtroEmprestimos">
+                        <option value="ativos">Em andamento</option>
+                        <option value="todos">Todos</option>
+                        <option value="atrasados">Atrasados</option>
+                        <option value="devolvidos">Devolvidos</option>
+                    </select>
+                </div>
+                <p id="mensagemEmprestimos"
+                   class="mensagem-modulo"
+                   role="status" aria-live="polite"></p>
+                <div class="tabela-container">
+                    <table class="tabela-equipamentos">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Equipamento</th>
+                            <th>Colaborador</th>
+                            <th>Empréstimo</th>
+                            <th>Previsão</th>
+                            <th>Devolução</th>
+                            <th>Situação</th>
+                            <th>Ação</th>
+                        </tr>
+                        </thead>
+                        <tbody id="corpoTabelaEmprestimos"></tbody>
+                    </table>
+                </div>
+                <p id="listaEmprestimosVazia"
+                   class="lista-vazia" hidden>
+                    Nenhum empréstimo encontrado.
+                </p>
+            </section>
+        </section>
+
+        <!-- HISTÓRICO GERAL - NOVO -->
+        <section id="telaHistorico" class="modulo-area" hidden>
+            <div class="modulo-cabecalho">
+                <div>
+                    <h2>Histórico geral de empréstimos</h2>
+                    <p>
+                        Consulte os empréstimos realizados,
+                        devoluções e registros em atraso.
+                    </p>
+                </div>
+                <button id="btnAtualizarHistorico"
+                        class="btn-secundario">
+                    ↻ Atualizar histórico
+                </button>
+            </div>
+
+            <section class="painel-listagem">
+                <div class="listagem-topo">
+                    <h3>Todos os registros</h3>
+                    <p id="quantidadeHistorico"
+                       class="texto-secundario"></p>
+                </div>
+
+                <div class="filtros-equipamentos">
+                    <input id="buscaHistorico" type="search"
+                           placeholder="Buscar por equipamento, colaborador ou ID">
+                    <select id="filtroHistorico">
+                        <option value="todos">Todas as situações</option>
+                        <option value="ativos">Em andamento</option>
+                        <option value="atrasados">Atrasados</option>
+                        <option value="devolvidos">Devolvidos</option>
+                    </select>
+                </div>
+
+                <p id="mensagemHistorico"
+                   class="mensagem-modulo"
+                   role="status" aria-live="polite"></p>
+
+                <div class="tabela-container">
+                    <table class="tabela-equipamentos">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Equipamento</th>
+                            <th>Colaborador</th>
+                            <th>Empréstimo</th>
+                            <th>Previsão</th>
+                            <th>Devolução</th>
+                            <th>Situação</th>
+                        </tr>
+                        </thead>
+                        <tbody id="corpoTabelaHistorico"></tbody>
+                    </table>
+                </div>
+
+                <p id="listaHistoricoVazia"
+                   class="lista-vazia" hidden>
+                    Nenhum registro encontrado.
+                </p>
+            </section>
+        </section>
+
+        <!-- OUTROS MÓDULOS -->
+        <section id="conteudoModulo" class="modulo" hidden>
+            <h2 id="nomeModulo"></h2>
+            <p>Vamos implementar as funcionalidades desta área na próxima etapa.</p>
+            <button id="btnVoltar" class="btn-primario">
+                Voltar ao Dashboard
+            </button>
+        </section>
+
+        <footer class="dashboard-footer">
+            #Elas Tech • Gestão de Equipamentos
+        </footer>
+    </main>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
