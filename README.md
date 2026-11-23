@@ -1,4 +1,3 @@
-</> Markdown
 
 # 💜 #Elas Tech | Sistema de Empréstimo de Equipamentos
 
